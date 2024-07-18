@@ -1,0 +1,31 @@
+/* Estilizar entradas con type="text", elementos select y áreas de texto */
+input[type=message],input[type=email], input[type=text], textarea {
+    width: 100%; /* Indicamos el ANCHO, en este caso es completo */
+    padding: 15px; /* Esto es el tamaño interior del casillero a completar */ 
+    border: 1px solid #f77e1b; /* Características del borde del casillero */
+    border-radius: 5px; /* Acá indicamos qué tan redondeado queremos el borde del casillero */
+    box-sizing: border-box; /* incluimos el padding dentro del ancho total */
+    margin-top: 6px; /* Margen superior entre casilleros */
+    margin-bottom: 16px; /* Margen inferior entre casilleros */
+    resize: vertical /* Redimensiona el area del texto verticalmente */
+  }
+  
+  /* Estilizar el botón de envío con un color de fondo específico, etc. */
+  input[type=submit] {
+    background-color: #68f71b;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* When moving the mouse over the submit button, add a darker green color */
+  button[type=submit]:hover {
+    background-color: #f77e1b;
+  }
+  
+  /* Hide Streamlit Branding */
+  #MainMenu {visibility: hidden;}
+  footer {visibility: hidden;}
+  header {visibility: hidden;}
