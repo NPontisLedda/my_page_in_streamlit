@@ -7,6 +7,7 @@
 # Una vez que tengamos armado un poco el formato, si queremos ver cómo va quedando la página, ponemos en la terminal
 # streamlit run (nombre del archivo .py donde tengamos el proyecto)
 # y para pararlo, usamos Ctrl + c
+# https://www.youtube.com/watch?v=mAhJ_mQEoO4
 
 
 import streamlit as st
