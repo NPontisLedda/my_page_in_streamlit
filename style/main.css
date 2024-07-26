@@ -1,3 +1,6 @@
+/*Acá tenemos un ejemplo de formato para un formulario*/
+
+
 /* Estilizar entradas con type="text", elementos select y áreas de texto */
 input[type=message],input[type=email], input[type=text], textarea {
     width: 100%; /* Indicamos el ANCHO, en este caso es completo */
