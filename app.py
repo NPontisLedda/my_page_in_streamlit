@@ -60,7 +60,7 @@ def pagina_bienvenida():
             """
         )
     with image_column:
-        image_url = "https://github.com/NPontisLedda/my_page_in_streamlit/blob/main/imagenes/ButterSweet.png"
+        image_url = "https://raw.githubusercontent.com/NPontisLedda/my_page_in_streamlit/main/imagenes/ButterSweet.png"
         image_response = requests.get(image_url)
         image = Image.open(BytesIO(image_response.content))
         st.image(image, use_column_width=True)
@@ -102,7 +102,7 @@ def servicios():
     st.write("##")
     image_column, text_column = st.columns((1,2))
     with image_column:
-        image_url = "https://github.com/NPontisLedda/my_page_in_streamlit/blob/main/imagenes/Collage%20de%20fotos%20neutro%20minimalista%20aesthetic.png"
+        image_url = "https://raw.githubusercontent.com/NPontisLedda/my_page_in_streamlit/main/imagenes/Collage%20de%20fotos%20neutro%20minimalista%20aesthetic.png"
         image_response = requests.get(image_url)
         image = Image.open(BytesIO(image_response.content))
         st.image(image, use_column_width=True)
