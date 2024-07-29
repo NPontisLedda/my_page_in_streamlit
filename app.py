@@ -84,7 +84,7 @@ def pagina_bienvenida():
             """
         )
     with image_column:
-        image = Image.open("imagenes\ButterSweet.png")
+        image = Image.open("https://github.com/NPontisLedda/my_page_in_streamlit/blob/main/imagenes/ButterSweet.png")
         st.image(image, use_column_width= True)
         st.write("##")
         st.write("Te invitamos a seguirnos en instagram y que puedas ver nuestros productos!! 📲 ")
@@ -126,7 +126,7 @@ def servicios():
     st.write("##") #-> esto indica que queremos dejar un espacio entre el titulo y el resto del contenido
     image_column, text_column = st.columns((1,2))
     with image_column:
-        image = Image.open("imagenes\Collage de fotos neutro minimalista aesthetic.png")
+        image = Image.open("https://github.com/NPontisLedda/my_page_in_streamlit/blob/main/imagenes/Collage%20de%20fotos%20neutro%20minimalista%20aesthetic.png")
         st.image(image, use_column_width= True)
     with text_column:
         st.subheader("Estos son algunos de nuestros productos que tendras a tu disposición para pedir")
