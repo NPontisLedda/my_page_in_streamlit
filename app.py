@@ -26,6 +26,8 @@ def css_load(css_file):
         st.markdown(f"<style>{file.read()}</style>", unsafe_allow_html=True)
 css_load("style/main.css")
 
+
+
 #Acá traemos la animación del cocinero
 url= "https://lottie.host/19376a64-ea20-498b-a0b6-e15b750107a3/dCB2IRN4sX.json"
 def load_lottie (url):
@@ -65,9 +67,10 @@ def load_lottie (url4):
     return r.json()
 
 lottie4 = load_lottie(url4)
+#-------------------------------------------------------------------
 
 #intro 
-with st.container():
+def pagina_bienvenida():
     st.title("🍪Hola! Somos ButterSweet 👋🍰")
     st.write("##") #-> esto indica que queremos dejar un espacio entre el titulo y el resto del contenido
     image_column, text_column = st.columns((1,2))
@@ -89,7 +92,7 @@ with st.container():
 
 
 #sobre mí
-with st.container():
+def sobre_mi():
     st.write("---") #-> con esto colocamos la línea que aparece para dividir sectores
     text_column, animation_column = st.columns(2) #-> acá definimos que vamos a tener la pantalla divida en dos, una parte de solo texto, y otra parte con animaciones.
     with text_column: #-> parte de texto
@@ -117,7 +120,7 @@ En resumen, mi trayectoria profesional ha sido una combinación de experiencias 
         
 
 #servicios
-with st.container():
+def servicios():
     st.write("---")
     st.header("Servicios 🛠")
     st.write("##") #-> esto indica que queremos dejar un espacio entre el titulo y el resto del contenido
@@ -140,27 +143,9 @@ with st.container():
         )
         st.write("[Más Servicios >](https://www.python.org/)")
 
-with st.container():
-    st.write("---")
-    st.write("##") #-> esto indica que queremos dejar un espacio entre el titulo y el resto del contenido
-    image_column, text_column = st.columns((1,2))
-    with image_column:
-        image = Image.open("imagenes/mendoza.jpg")
-        st.image(image, use_column_width= True)
-    with text_column:
-        st.subheader("Esta es una imágen muy representativa de Mendoza, provincia donde nací.")
-        st.write(
-            """
-            Esta imágen en particular, representa una de las mejores vistas de la provincia.
-            La coordillera de los Andes.
-            """
-        )
-        st.write("[Más sobre Mendoza >](https://mendoza.tur.ar/)")
-
-
 # contacto con la empresa
 
-with st.container():
+def contacto():
     st.write("---")
     st.header("Contacta con la empresa 📧")
     
@@ -185,7 +170,24 @@ with st.container():
 
 
 
+# Barra de navegación lateral
 
+st.sidebar.title("Navegación") 
+pagina = st.sidebar.selectbox("Selecciona una página", ["Página de bienvenida", "Sobre mí", "Servicios", "Contacto"])
+
+
+
+if pagina == "Página de bienvenida":
+    pagina_bienvenida()
+
+if pagina == "Sobre mí":
+    sobre_mi()
+
+if pagina == "Servicios":
+    servicios()
+
+if pagina == "Contacto":
+    contacto()
 
 #----------------------------------------------------------------------------------------------
 #from fastapi import FastAPI, Depends, Query
