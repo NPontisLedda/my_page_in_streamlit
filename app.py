@@ -60,7 +60,7 @@ def pagina_bienvenida():
             """
         )
     with image_column:
-        image_url = "https://raw.githubusercontent.com/NPontisLedda/my_page_in_streamlit/main/imagenes/ButterSweet.png"
+        image_url = "https://raw.githubusercontent.com/NPontisLedda/my_page_in_streamlit/main/imagenes/image.png"
         image_response = requests.get(image_url)
         image = Image.open(BytesIO(image_response.content))
         st.image(image, use_column_width=True)
