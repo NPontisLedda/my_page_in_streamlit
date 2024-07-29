@@ -16,9 +16,10 @@ import streamlit as st
 from PIL import Image # ->esto es pillow
 import requests
 from streamlit_lottie import st_lottie
+from io import BytesIO
 
 
-st.set_page_config(page_title= "Nicoapp", page_icon= "🍪", layout= "wide")
+st.set_page_config(page_title="Nicoapp", page_icon="🍪", layout="wide")
 email_contact = "emaildecontacto@gmail.com"
 
 def css_load(css_file):
@@ -26,56 +27,31 @@ def css_load(css_file):
         st.markdown(f"<style>{file.read()}</style>", unsafe_allow_html=True)
 css_load("style/main.css")
 
-
-
-#Acá traemos la animación del cocinero
-url= "https://lottie.host/19376a64-ea20-498b-a0b6-e15b750107a3/dCB2IRN4sX.json"
-def load_lottie (url):
+# Función para cargar animaciones Lottie
+def load_lottie(url):
     r = requests.get(url)
     if r.status_code != 200:
         return None
     return r.json()
 
-lottie1 = load_lottie(url)
-#-----------------------------------------
-#Acá traemos la animación del contacto
-url2= "https://lottie.host/28951b72-62b2-4132-a375-9a49a2b5426e/v4fStwpLnh.json"
-def load_lottie (url2):
-    r = requests.get(url2)
-    if r.status_code != 200:
-        return None
-    return r.json()
+# URL de las animaciones Lottie
+url_lottie1 = "https://lottie.host/19376a64-ea20-498b-a0b6-e15b750107a3/dCB2IRN4sX.json"
+url_lottie2 = "https://lottie.host/28951b72-62b2-4132-a375-9a49a2b5426e/v4fStwpLnh.json"
+url_lottie3 = "https://lottie.host/374bb9de-3f20-474b-9bef-0fb6d96f5694/ZMKpKLjTDk.json"
+url_lottie4 = "https://lottie.host/51744992-b4e9-47b5-86eb-a996b50a04f4/xqnTmzqRp7.json"
 
-lottie2 = load_lottie(url2)
-#-----------------------------------------
-#Acá traemos la animación del viaje
-url3= "https://lottie.host/374bb9de-3f20-474b-9bef-0fb6d96f5694/ZMKpKLjTDk.json"
-def load_lottie (url3):
-    r = requests.get(url3)
-    if r.status_code != 200:
-        return None
-    return r.json()
+lottie1 = load_lottie(url_lottie1)
+lottie2 = load_lottie(url_lottie2)
+lottie3 = load_lottie(url_lottie3)
+lottie4 = load_lottie(url_lottie4)
 
-lottie3 = load_lottie(url3)
-#-----------------------------------------
-#Acá traemos la animación del analista
-url4= "https://lottie.host/51744992-b4e9-47b5-86eb-a996b50a04f4/xqnTmzqRp7.json"
-def load_lottie (url4):
-    r = requests.get(url4)
-    if r.status_code != 200:
-        return None
-    return r.json()
-
-lottie4 = load_lottie(url4)
-#-------------------------------------------------------------------
-
-#intro 
+# Intro
 def pagina_bienvenida():
     st.title("🍪Hola! Somos ButterSweet 👋🍰")
-    st.write("##") #-> esto indica que queremos dejar un espacio entre el titulo y el resto del contenido
+    st.write("##")
     image_column, text_column = st.columns((1,2))
     with text_column:
-        st.subheader("""ButterSweet""")
+        st.subheader("ButterSweet")
         st.write(
             """
             Nace de la idea de poder darle a la gente, 
@@ -84,52 +60,54 @@ def pagina_bienvenida():
             """
         )
     with image_column:
-        image = Image.open("https://github.com/NPontisLedda/my_page_in_streamlit/blob/main/imagenes/ButterSweet.png")
-        st.image(image, use_column_width= True)
+        image_url = "https://github.com/NPontisLedda/my_page_in_streamlit/blob/main/imagenes/ButterSweet.png"
+        image_response = requests.get(image_url)
+        image = Image.open(BytesIO(image_response.content))
+        st.image(image, use_column_width=True)
         st.write("##")
         st.write("Te invitamos a seguirnos en instagram y que puedas ver nuestros productos!! 📲 ")
         st.write("[Instagram >](https://www.instagram.com/buttersweet.1?igsh=Ym5vOXQ5eHZpcHFv/)")
 
-
-#sobre mí
+# Sobre mí
 def sobre_mi():
-    st.write("---") #-> con esto colocamos la línea que aparece para dividir sectores
-    text_column, animation_column = st.columns(2) #-> acá definimos que vamos a tener la pantalla divida en dos, una parte de solo texto, y otra parte con animaciones.
-    with text_column: #-> parte de texto
+    st.write("---")
+    text_column, animation_column = st.columns(2)
+    with text_column:
         st.header("Sobre mí 🔍")
         st.write(
             """
             Hola, soy Nico y nací el 2 de abril de 1998 en Mendoza, Argentina. Desde una edad temprana, sentí una profunda pasión por la gastronomía, lo que me llevó a iniciar mis estudios en el Instituto Gastronómico de las Américas en 2019. Esta decisión marcó el comienzo de un emocionante viaje profesional en el mundo de la cocina.
 
-A los pocos meses de comenzar mis estudios, tuve la suerte de encontrar mi primer trabajo en la bodega Clos de Chacras. Pasé un año en esta prestigiosa bodega, donde adquirí valiosa experiencia y habilidades en el sector. Sin embargo, debido a la pandemia, me vi obligado a dejar mi puesto en Clos de Chacras. Durante ese tiempo, también trabajé como pasante en la bodega Norton, lo que me permitió explorar aún más el fascinante mundo de la gastronomía.
+            A los pocos meses de comenzar mis estudios, tuve la suerte de encontrar mi primer trabajo en la bodega Clos de Chacras. Pasé un año en esta prestigiosa bodega, donde adquirí valiosa experiencia y habilidades en el sector. Sin embargo, debido a la pandemia, me vi obligado a dejar mi puesto en Clos de Chacras. Durante ese tiempo, también trabajé como pasante en la bodega Norton, lo que me permitió explorar aún más el fascinante mundo de la gastronomía.
 
-En junio de 2021, decidí ampliar mis horizontes y viajé a España para realizar la temporada de verano en un hotel en Matalascañas. Esta experiencia internacional no solo enriqueció mi carrera profesional, sino que también me brindó una perspectiva global sobre la gastronomía.
+            En junio de 2021, decidí ampliar mis horizontes y viajé a España para realizar la temporada de verano en un hotel en Matalascañas. Esta experiencia internacional no solo enriqueció mi carrera profesional, sino que también me brindó una perspectiva global sobre la gastronomía.
 
-A mi regreso a Argentina, continué mi trayectoria en el campo culinario trabajando en la pastelería Alcayota. Mi carrera tomó un giro interesante cuando comencé a enseñar gastronomía y pastelería profesional en el mismo instituto donde había estudiado. Esta oportunidad me permitió compartir mi conocimiento y pasión por la cocina con futuros chefs y pasteleros.
+            A mi regreso a Argentina, continué mi trayectoria en el campo culinario trabajando en la pastelería Alcayota. Mi carrera tomó un giro interesante cuando comencé a enseñar gastronomía y pastelería profesional en el mismo instituto donde había estudiado. Esta oportunidad me permitió compartir mi conocimiento y pasión por la cocina con futuros chefs y pasteleros.
 
-Tras cuatro años de intensa dedicación en el rubro gastronómico, decidí emprender un nuevo camino en el sector IT. Mi interés por los datos y la tecnología me llevó a estudiar Ciencia de Datos, y hoy en día me desempeño como analista de datos en mi primer empleo en el sector tecnológico. Este cambio de rumbo ha sido una aventura en sí misma, llena de nuevos desafíos y aprendizajes.
+            Tras cuatro años de intensa dedicación en el rubro gastronómico, decidí emprender un nuevo camino en el sector IT. Mi interés por los datos y la tecnología me llevó a estudiar Ciencia de Datos, y hoy en día me desempeño como analista de datos en mi primer empleo en el sector tecnológico. Este cambio de rumbo ha sido una aventura en sí misma, llena de nuevos desafíos y aprendizajes.
 
-En resumen, mi trayectoria profesional ha sido una combinación de experiencias enriquecedoras en la gastronomía y una emocionante transición al mundo de los datos y la tecnología. Cada etapa de mi carrera me ha brindado valiosas lecciones y ha contribuido a mi crecimiento personal y profesional. Estoy entusiasmado por el futuro y por las nuevas oportunidades que se presenten en mi camino.
+            En resumen, mi trayectoria profesional ha sido una combinación de experiencias enriquecedoras en la gastronomía y una emocionante transición al mundo de los datos y la tecnología. Cada etapa de mi carrera me ha brindado valiosas lecciones y ha contribuido a mi crecimiento personal y profesional. Estoy entusiasmado por el futuro y por las nuevas oportunidades que se presenten en mi camino.
             """
         )
         
-    with animation_column: #-> parte de animación
+    with animation_column:
         st_lottie(lottie1, height=300)
         st_lottie(lottie3, height=300)
         st_lottie(lottie4, height=300)
-        
 
-#servicios
+# Servicios
 def servicios():
     st.write("---")
     st.header("Servicios 🛠")
-    st.write("##") #-> esto indica que queremos dejar un espacio entre el titulo y el resto del contenido
+    st.write("##")
     image_column, text_column = st.columns((1,2))
     with image_column:
-        image = Image.open("https://github.com/NPontisLedda/my_page_in_streamlit/blob/main/imagenes/Collage%20de%20fotos%20neutro%20minimalista%20aesthetic.png")
-        st.image(image, use_column_width= True)
+        image_url = "https://github.com/NPontisLedda/my_page_in_streamlit/blob/main/imagenes/Collage%20de%20fotos%20neutro%20minimalista%20aesthetic.png"
+        image_response = requests.get(image_url)
+        image = Image.open(BytesIO(image_response.content))
+        st.image(image, use_column_width=True)
     with text_column:
-        st.subheader("Estos son algunos de nuestros productos que tendras a tu disposición para pedir")
+        st.subheader("Estos son algunos de nuestros productos que tendrás a tu disposición para pedir")
         st.write(
             """
             Contamos con:
