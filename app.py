@@ -19,7 +19,7 @@ from streamlit_lottie import st_lottie
 from io import BytesIO
 
 
-st.set_page_config(page_title="Nicoapp", page_icon="🍪", layout="wide")
+st.set_page_config(page_title="ButterSweet", page_icon="🍪", layout="wide")
 email_contact = "emaildecontacto@gmail.com"
 
 def css_load(css_file):
