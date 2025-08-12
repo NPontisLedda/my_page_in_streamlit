@@ -59,14 +59,40 @@ def pagina_bienvenida():
             para comer algo clásico y rico
             """
         )
+        st.write("##")
+        st.write("Te invitamos a seguirnos en instagram y que puedas ver nuestros productos!! Y ayudarnos a crecer 📲 ")
+        st.write("[Instagram >](https://www.instagram.com/buttersweet.1?igsh=Ym5vOXQ5eHZpcHFv/)")
     with image_column:
         image_url = "https://raw.githubusercontent.com/NPontisLedda/my_page_in_streamlit/main/imagenes/image.png"
         image_response = requests.get(image_url)
         image = Image.open(BytesIO(image_response.content))
         st.image(image, use_column_width=True)
-        st.write("##")
-        st.write("Te invitamos a seguirnos en instagram y que puedas ver nuestros productos!! 📲 ")
-        st.write("[Instagram >](https://www.instagram.com/buttersweet.1?igsh=Ym5vOXQ5eHZpcHFv/)")
+
+# Servicios
+def servicios():
+    st.write("---")
+    st.header("Servicios 🛠")
+    st.write("##")
+    image_column, text_column = st.columns((1,2))
+    with image_column:
+        image_url = "https://raw.githubusercontent.com/NPontisLedda/my_page_in_streamlit/main/imagenes/Collage%20de%20fotos%20neutro%20minimalista%20aesthetic.png"
+        image_response = requests.get(image_url)
+        image = Image.open(BytesIO(image_response.content))
+        st.image(image, use_column_width=True)
+    with text_column:
+        st.subheader("Estos son algunos de nuestros productos que tendrás a tu disposición para pedir")
+        st.write(
+            """
+            Contamos con:
+            - Cheesecake
+            - Lemon pie
+            - Tiramisú
+            - Alfajores de chocolate y dulce de leche
+            - Conos de dulce de leche
+            - E INCLUSIVE ARMAMOS DESAYUNOS!!🎉🎈 
+            """
+        )
+        st.write("[Más Servicios >]()")
 
 # Sobre mí
 def sobre_mi():
@@ -94,32 +120,6 @@ def sobre_mi():
         st_lottie(lottie1, height=300)
         st_lottie(lottie3, height=300)
         st_lottie(lottie4, height=300)
-
-# Servicios
-def servicios():
-    st.write("---")
-    st.header("Servicios 🛠")
-    st.write("##")
-    image_column, text_column = st.columns((1,2))
-    with image_column:
-        image_url = "https://raw.githubusercontent.com/NPontisLedda/my_page_in_streamlit/main/imagenes/Collage%20de%20fotos%20neutro%20minimalista%20aesthetic.png"
-        image_response = requests.get(image_url)
-        image = Image.open(BytesIO(image_response.content))
-        st.image(image, use_column_width=True)
-    with text_column:
-        st.subheader("Estos son algunos de nuestros productos que tendrás a tu disposición para pedir")
-        st.write(
-            """
-            Contamos con:
-            - Cheesecake
-            - Lemon pie
-            - Tiramisú
-            - Alfajores de chocolate y dulce de leche
-            - Conos de dulce de leche
-            - E INCLUSIVE ARMAMOS DESAYUNOS!!🎉🎈 
-            """
-        )
-        st.write("[Más Servicios >]()")
 
 # contacto con la empresa
 
@@ -151,18 +151,19 @@ def contacto():
 # Barra de navegación lateral
 
 st.sidebar.title("Navegación") 
-pagina = st.sidebar.selectbox("Selecciona una página", ["Página de bienvenida", "Sobre mí", "Servicios", "Contacto"])
+pagina = st.sidebar.selectbox("Selecciona una página", ["Página de bienvenida", "Servicios", "Sobre mí", "Contacto"])
 
 
 
 if pagina == "Página de bienvenida":
     pagina_bienvenida()
 
+if pagina == "Servicios":
+    servicios()
+
 if pagina == "Sobre mí":
     sobre_mi()
 
-if pagina == "Servicios":
-    servicios()
 
 if pagina == "Contacto":
     contacto()
